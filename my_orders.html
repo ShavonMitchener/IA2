@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders - AutoParts Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="checkout.html">Checkout</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="points" id="points-pill">0 pts</div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>My Orders</h1>
+      <div id="orders-container">
+        <table id="orders-table" style="display:none;">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Points Earned</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="orders-body"></tbody>
+        </table>
+        <div id="no-orders">No orders found.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <a href="login.html">Login</a> ·
+      <a href="register.html">Register</a> ·
+      <a href="my_orders.html" class="active">My Orders</a>
+    </p>
+    <p>© 2025 AutoParts Pro</p>
+  </footer>
+
+  <script>
+    function money(n){ return '$' + n.toFixed(2); }
+
+    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    const tbody = document.getElementById('orders-body');
+    const table = document.getElementById('orders-table');
+    const empty = document.getElementById('no-orders');
+
+    if (orders.length > 0) {
+      empty.style.display = 'none';
+      table.style.display = 'table';
+
+      orders.forEach((o, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>#${o.id}</td>
+          <td>${o.date}</td>
+          <td>${money(o.total)}</td>
+          <td>${o.earned}</td>
+          <td><button class="btn small" onclick="viewReceipt(${i})">View Receipt</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function viewReceipt(i){
+      const r = orders[i];
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <html><head><title>Receipt #${r.id}</title>
+        <style>
+          body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:24px}
+          h2{margin:0 0 10px}
+          .row{display:flex;justify-content:space-between}
+          .box{border:1px solid #ddd;border-radius:10px;padding:12px;margin:10px 0}
+          ul{list-style:none;margin:0;padding:0}
+          li{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:6px 0}
+          .total strong{font-size:18px}
+        </style></head><body>
+        <h2>AutoParts Pro — Receipt</h2>
+        <div class="box">
+          <div class="row"><div><strong>Name:</strong> ${r.name}</div><div><strong>Date:</strong> ${r.date}</div></div>
+          <div class="row"><div><strong>Phone:</strong> ${r.phone||'-'}</div><div><strong>Car:</strong> ${r.carModel||'-'} ${r.carYear||''}</div></div>
+        </div>
+        <div class="box"><ul>
+          ${r.items.map(i=>`<li><span>${i.name} × ${i.qty}</span><span>$${(i.price*i.qty).toFixed(2)}</span></li>`).join('')}
+        </ul></div>
+        <div class="box">
+          <div class="row"><span>Subtotal</span><strong>${money(r.sub)}</strong></div>
+          <div class="row"><span>First Purchase Discount</span><strong>-${money(r.firstDisc)}</strong></div>
+          <div class="row"><span>Points Discount</span><strong>-${money(r.pointsUsed)}</strong></div>
+          <div class="row"><span>Broker Fee</span><strong>${money(r.brokerFee)}</strong></div>
+          <hr/>
+          <div class="row total"><span>Total Paid</span><strong>${money(r.total)}</strong></div>
+          <div class="row"><span>Points Earned</span><strong>${r.earned} pts</strong></div>
+        </div>
+        <button onclick="window.print()">Print</button>
+        </body></html>
+      `);
+      win.document.close();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Receipt - AutoParts Pro</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .receipt {
+      background: #fff;
+      padding: 24px;
+      margin: 30px auto;
+      max-width: 700px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    }
+    .r-head { text-align:center; color:#0b3d5c; margin-bottom:10px; }
+    .r-meta p { margin:4px 0; }
+    .receipt table { width:100%; border-collapse:collapse; margin:12px 0; }
+    .receipt th, .receipt td { padding:8px; border-bottom:1px solid #eaeaea; text-align:left; }
+    .right { text-align:right; }
+    .big { font-weight:700; }
+    @media print {
+      nav, footer { display:none; }
+      body { background:#fff; }
+      .receipt { box-shadow:none; margin:0; }
+    }
+  </style>
+</head>
+<body data-page="invoice">
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+      <div class="points" id="nav-points">0 pts</div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="receipt" id="receipt">
+      <h2 class="r-head">AutoParts Pro — Receipt</h2>
+      <div class="r-meta">
+        <p><strong>Date:</strong> <span id="r-date"></span></p>
+        <p><strong>Customer:</strong> <span id="r-name"></span></p>
+        <p><strong>Phone:</strong> <span id="r-phone"></span></p>
+        <p><strong>Car:</strong> <span id="r-car"></span></p>
+        <p><strong>Order ID:</strong> <span id="r-id"></span></p>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th class="right">Qty</th>
+            <th class="right">Line Total</th>
+          </tr>
+        </thead>
+        <tbody id="r-items"></tbody>
+      </table>
+
+      <p>Subtotal: <span id="r-sub"></span></p>
+      <p>Broker Fee: <span id="r-broker"></span></p>
+      <p>First Purchase Discount: <span id="r-first"></span></p>
+      <p>Loyalty Points Used: <span id="r-pts"></span></p>
+      <p class="big">Total: <span id="r-total"></span></p>
+
+      <p style="margin-top:10px; font-style:italic;">Thank you for shopping with AutoParts Pro.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 AutoParts Pro</p>
+  </footer>
+
+  <script src="Scripts/shop.js"></script>
+</body>
+</html>

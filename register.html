@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - AutoParts Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="checkout.html">Checkout</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="points" id="points-pill">0 pts</div>
+  </nav>
+</header>
+
+
+  <main class="form-container">
+    <div class="form-card">
+      <h2>Create Account</h2>
+      <form id="register-form">
+        <label>Username</label>
+        <input type="text" id="reg-username" required>
+        <label>Password</label>
+        <input type="password" id="reg-password" required>
+        <button type="submit" class="btn primary">Register</button>
+      </form>
+      <p style="text-align:center;margin-top:10px;">
+        <a href="login.html">Login</a> · 
+        <a href="orders.html">My Orders</a>
+      </p>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('register-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const u = document.getElementById('reg-username').value.trim();
+      const p = document.getElementById('reg-password').value.trim();
+
+      if (!u || !p) return alert('Please fill all fields.');
+
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      if (users.some(x => x.username === u)) return alert('Username already exists.');
+
+      users.push({ username: u, password: p });
+      localStorage.setItem('users', JSON.stringify(users));
+
+      alert('Registration successful! You can now log in.');
+      location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

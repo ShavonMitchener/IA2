@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - AutoParts Pro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="checkout">
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="checkout.html" class="active">Checkout</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="points" id="nav-points">0 pts</div>
+    </nav>
+  </header>
+
+  <main class="checkout-wrap">
+    <h2 class="page-title">Checkout</h2>
+
+    <div class="checkout-grid">
+      <section class="checkout-left card">
+        <h3>Your Details</h3>
+        <label>Full Name</label>
+        <input type="text" id="co-name" placeholder="e.g. Shavon Mitchener"/>
+
+        <label>Phone Number</label>
+        <input type="text" id="co-phone" placeholder="e.g. 876-555-1234"/>
+
+        <label>Car Model</label>
+        <input type="text" id="co-model" placeholder="e.g. Toyota Corolla"/>
+
+        <label>Car Year</label>
+        <input type="text" id="co-year" placeholder="e.g. 2018"/>
+      </section>
+      
+      <section class="checkout-right card">
+        <h3>Order Summary</h3>
+        <ul id="co-items" class="order-list"></ul>
+        <hr/>
+
+        <div class="sum-row">
+          <span>Subtotal</span>
+          <strong id="sum-sub">$0.00</strong>
+        </div>
+        <div class="sum-row">
+          <span>Broker Fee</span>
+          <strong id="sum-broker">$5.00</strong>
+        </div>
+        <div class="sum-row">
+          <span>First Purchase Discount</span>
+          <strong id="sum-first">-$0.00</strong>
+        </div>
+
+        <div id="row-points" class="points-row">
+          <label class="pts-label">
+            <input type="checkbox" id="use-points"/>
+            Use Loyalty Points (<span id="pts-have">0 pts ($0.00)</span>)
+          </label>
+          <div class="sum-row">
+            <span>Points Discount</span>
+            <strong id="sum-pts">-$0.00</strong>
+          </div>
+        </div>
+
+        <hr/>
+        <div class="sum-row total">
+          <span>Total</span>
+          <strong id="sum-total">$0.00</strong>
+        </div>
+
+        <button id="place-order" class="btn">Place Order</button>
+        <p id="co-note" class="note"></p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>
+      <a href="login.html">Login</a> ·
+      <a href="register.html">Register</a> ·
+      <a href="my_orders.html">My Orders</a>
+    </p>
+    <p>© 2025 AutoParts Pro</p>
+  </footer>
+
+  <script src="Scripts/shop.js"></script>
+</body>
+</html>

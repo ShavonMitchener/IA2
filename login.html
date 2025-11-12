@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - AutoParts Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="checkout.html">Checkout</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="points" id="points-pill">0 pts</div>
+  </nav>
+</header>
+
+
+  <main class="form-container">
+    <div class="form-card">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label>Username</label>
+        <input type="text" id="login-username" required>
+        <label>Password</label>
+        <input type="password" id="login-password" required>
+        <button type="submit" class="btn primary">Login</button>
+      </form>
+      <p style="text-align:center;margin-top:10px;">
+        <a href="register.html">Create Account</a> · 
+        <a href="orders.html">My Orders</a>
+      </p>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const u = document.getElementById('login-username').value.trim();
+      const p = document.getElementById('login-password').value.trim();
+
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const found = users.find(x => x.username === u && x.password === p);
+
+      if (!found) return alert('Invalid username or password.');
+
+      localStorage.setItem('user', JSON.stringify({ loggedIn: true, name: u }));
+      alert(`Welcome, ${u}!`);
+      location.href = 'shop.html';
+    });
+  </script>
+</body>
+</html>
