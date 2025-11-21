@@ -313,3 +313,13 @@ function renderCheckout(){
   if (page === 'cart')     renderCart();
   if (page === 'checkout') renderCheckout();
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+  
+  if (user) {
+    // Example: Welcome Shavon (120 pts)
+    document.getElementById("userPointsDisplay").textContent =
+      `Welcome ${user.username} (${user.points} pts)`;
+  }
+});
