@@ -1,27 +1,27 @@
 //Catalog
 const products = {
   "Tyres": [
-    { name: "Front Tyres", price: 110, img: "Images/tyre.png" },
+    { name: "Front Tyres", price: 100, img: "Images/tyre.png" },
     { name: "Rear Tyres",  price: 100, img: "Images/tyre.png" }
   ],
   "Fluids": [
     { name: "Engine Oil",           price: 70, img: "Images/oil.png" },
     { name: "Coolant",              price: 40, img: "Images/coolant.png" },
     { name: "Power Steering Fluid", price: 35, img: "Images/steeringfluid.jpg" },
-    { name: "Windscreen Washer",    price: 35, img: "Images/washer.jpeg" },
-    { name: "Brake cleaner",        price: 35, img: "Images/brakecleaner.jpg" }
+    { name: "Windscreen Washer",    price: 30, img: "Images/washer.jpeg" },
+    { name: "Brake cleaner",        price: 30, img: "Images/brakecleaner.jpg" }
   ],
   "Brakes": [
-    { name: "Front Brake Pads", price: 85,  img: "Images/fdiscpad.png" },
+    { name: "Front Brake Pads", price: 75,  img: "Images/fdiscpad.png" },
     { name: "Rear Brake Pads",  price: 75,  img: "Images/bdiscpad.png" },
-    { name: "Brake Rotor",      price: 100, img: "Images/rotor.png" }
+    { name: "Brake Rotor",      price: 150, img: "Images/rotor.png" }
   ],
   "Electrical": [
-    { name: "Car Battery",             price: 160, img: "Images/battery.jpg" },
+    { name: "Car Battery",             price: 250, img: "Images/battery.jpg" },
     { name: "Spark Plugs (Set of 4)",  price: 60,  img: "Images/sparkplug.jpg" }
   ],
   "Filters": [
-    { name: "Oil Filter",   price: 160, img: "Images/oilfilter.webp" },
+    { name: "Oil Filter",   price: 50, img: "Images/oilfilter.webp" },
     { name: "Cabin Filter", price: 60,  img: "Images/cabinfilter.png" },
     { name: "Air Filter",   price: 45,  img: "Images/airfilter.png" }
   ]
@@ -323,3 +323,4 @@ document.addEventListener("DOMContentLoaded", () => {
       `Welcome ${user.username} (${user.points} pts)`;
   }
 });
+
